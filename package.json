@@ -1,0 +1,20 @@
+{
+  "name": "femboys-runway",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 0.0.0.0",
+    "build": "vite build --base ./",
+    "preview": "vite preview --host 0.0.0.0"
+  },
+  "dependencies": {
+    "@fontsource/bebas-neue": "^5.2.8",
+    "@fontsource/manrope": "^5.2.8",
+    "@fontsource/syne": "^5.2.8",
+    "three": "^0.187.0"
+  },
+  "devDependencies": {
+    "vite": "^7.2.4"
+  }
+}

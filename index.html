@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
+    <meta name="theme-color" content="#160718" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="description" content="FEMBOYS — a neon runway rhythm runner. Strut, pose, slay." />
+    <title>FEMBOYS — Runway Rhythm</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23160718'/%3E%3Cpath d='M32 8l6.6 16.6L56 31l-17.4 6.4L32 56l-6.6-18.6L8 31l17.4-6.4z' fill='%23ff3f98'/%3E%3Ccircle cx='32' cy='31' r='6' fill='%23fff0e8'/%3E%3C/svg%3E" />
+  </head>
+  <body>
+    <div id="app">
+      <div id="stage" aria-hidden="true"></div>
+      <div class="grain" aria-hidden="true"></div>
+      <div class="vignette" aria-hidden="true"></div>
+
+      <!-- ============ TITLE / LOOK SELECT ============ -->
+      <main id="menu" class="menu">
+        <header class="topbar menu-top">
+          <div class="brand-chip">
+            <span class="brand-chip-mark">✦</span>
+            <span>FEMME ST. STUDIO</span>
+          </div>
+          <div class="season-chip"><span class="live-dot"></span> SEASON 01 · AFTERGLOW</div>
+          <div class="topbar-actions">
+            <button id="btn-menu-sound" class="icon-btn" type="button" aria-label="Toggle sound" aria-pressed="false">
+              <svg class="sound-on" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4Zm12.5-1.5a6 6 0 0 1 0 9M19 5a9.5 9.5 0 0 1 0 14" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+              <svg class="sound-off" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4Zm12 1 5 5m0-5-5 5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+            </button>
+          </div>
+        </header>
+
+        <section class="hero" aria-labelledby="title">
+          <div class="hero-kicker"><span class="spark">✦</span> THE AFTERGLOW RUNWAY <span class="spark">✦</span></div>
+          <h1 id="title" class="wordmark" aria-label="Femboys">
+            <span class="wordmark-top">FEM</span><span class="wordmark-bottom">BOYS</span>
+            <span class="wordmark-sticker">RUNWAY<br>RHYTHM</span>
+          </h1>
+          <p class="tagline">STRUT <i>/</i> POSE <i>/</i> SLAY</p>
+          <p class="hero-copy">Three icons. One endless runway.<br>Make every step a moment.</p>
+        </section>
+
+        <section class="look-panel" aria-label="Choose your icon">
+          <div class="panel-heading">
+            <span class="panel-kicker">CHOOSE YOUR ICON</span>
+            <span class="panel-index" id="cast-index">01 / 03</span>
+          </div>
+          <div class="cast-selector" id="cast-selector" role="radiogroup" aria-label="Cast member">
+            <button class="cast-card is-selected" data-cast="mika" role="radio" aria-checked="true" type="button">
+              <span class="cast-avatar" style="--avatar:#ff4f9d"><span>M</span></span>
+              <span class="cast-copy"><strong>MIKA</strong><em>THE DAYDREAM</em></span>
+              <span class="cast-tick">✦</span>
+            </button>
+            <button class="cast-card" data-cast="jules" role="radio" aria-checked="false" type="button">
+              <span class="cast-avatar" style="--avatar:#62f4f0"><span>J</span></span>
+              <span class="cast-copy"><strong>JULES</strong><em>THE WILDCARD</em></span>
+              <span class="cast-tick">✦</span>
+            </button>
+            <button class="cast-card" data-cast="ren" role="radio" aria-checked="false" type="button">
+              <span class="cast-avatar" style="--avatar:#b88cff"><span>R</span></span>
+              <span class="cast-copy"><strong>REN</strong><em>THE NIGHTBLOOM</em></span>
+              <span class="cast-tick">✦</span>
+            </button>
+          </div>
+          <div class="cta-row">
+            <button id="btn-start" class="primary-btn" type="button">
+              <span class="btn-shine"></span>
+              <span class="primary-label">START THE SHOW</span>
+              <span class="primary-arrow">↗</span>
+            </button>
+            <button id="btn-how" class="ghost-btn" type="button">HOW TO PLAY</button>
+          </div>
+          <div class="menu-meta">
+            <span>BEST <b id="menu-best">000 000</b></span>
+            <span class="meta-rule"></span>
+            <span id="menu-look-name">LOOK 01 — CANDY FLASH</span>
+          </div>
+        </section>
+
+        <footer class="menu-footer">
+          <span>MUSIC ON · HEADPHONES RECOMMENDED</span>
+          <span class="footer-star">✦</span>
+          <span>SWIPE OR USE THE CONTROLS</span>
+        </footer>
+      </main>
+
+      <!-- ============ GAME HUD ============ -->
+      <section id="hud" class="hud is-hidden" aria-label="Game HUD">
+        <div class="hud-top">
+          <div class="score-block">
+            <span class="hud-eyebrow">SCORE</span>
+            <span class="score-value" id="score">000 000</span>
+            <div class="multiplier" id="multiplier">×1</div>
+          </div>
+          <div class="run-block">
+            <span class="hud-eyebrow">RUNWAY</span>
+            <span id="distance" class="distance-value">000 M</span>
+            <span id="zone-name" class="zone-inline">AFTERGLOW</span>
+          </div>
+          <div class="hud-actions">
+            <div class="lives" id="lives" aria-label="Three lives">
+              <span class="heart is-full">♥</span><span class="heart is-full">♥</span><span class="heart is-full">♥</span>
+            </div>
+            <button id="btn-pause" class="icon-btn pause-btn" type="button" aria-label="Pause game">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 6v12M16 6v12" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <div class="style-row">
+          <span class="style-label">STYLE</span>
+          <div class="style-meter"><span id="style-fill"></span><i class="style-notch n1"></i><i class="style-notch n2"></i><i class="style-notch n3"></i></div>
+          <span class="style-value" id="style-value">0%</span>
+        </div>
+
+        <div id="super-badge" class="super-badge"><span>✦</span> SUPERSTAR <span id="super-time">8.0</span><span>✦</span></div>
+        <div id="combo-badge" class="combo-badge"><span class="combo-x" id="combo">0</span><span class="combo-label">STREAK</span></div>
+        <div id="judgement" class="judgement" aria-live="polite"></div>
+
+        <div class="zone-banner" id="zone-banner">
+          <span class="zone-kicker">NOW ENTERING</span>
+          <span class="zone-title" id="zone-banner-title">AQUA HOUR</span>
+        </div>
+
+        <div class="tutorial-tip" id="tutorial-tip">
+          <span class="tip-key">← →</span> CHANGE LANE
+          <span class="tip-key">↑</span> JUMP
+          <span class="tip-key">TAP</span> POSE
+        </div>
+
+        <div class="controls" id="controls">
+          <div class="move-cluster" aria-label="Movement controls">
+            <button class="game-btn move-btn" data-action="left" type="button" aria-label="Move left">←</button>
+            <button class="game-btn jump-btn" data-action="jump" type="button" aria-label="Jump">
+              <span class="jump-arrow">↑</span><span class="btn-micro">JUMP</span>
+            </button>
+            <button class="game-btn move-btn" data-action="right" type="button" aria-label="Move right">→</button>
+          </div>
+          <button class="pose-btn" data-action="pose" type="button" aria-label="Pose on the beat">
+            <span class="pose-orbit"></span>
+            <span class="pose-star">✦</span>
+            <span class="pose-word">POSE</span>
+            <span class="pose-sub">ON BEAT</span>
+          </button>
+        </div>
+
+        <div class="desktop-hint">
+          <span><b>←</b><b>→</b> LANE</span>
+          <span><b>↑</b> JUMP</span>
+          <span><b>SPACE</b> POSE</span>
+          <span><b>P</b> PAUSE</span>
+        </div>
+      </section>
+
+      <!-- ============ SCREENS ============ -->
+      <div id="countdown" class="countdown is-hidden" aria-live="assertive">
+        <span class="countdown-kicker">THE RUNWAY IS YOURS</span>
+        <strong id="countdown-value">3</strong>
+        <span class="countdown-line"></span>
+      </div>
+
+      <section id="pause-screen" class="modal-screen is-hidden" aria-label="Paused">
+        <div class="modal-card pause-card">
+          <span class="modal-kicker">INTERMISSION</span>
+          <h2>TAKE A<br><em>BREATH.</em></h2>
+          <p>The runway will wait. You look incredible.</p>
+          <div class="modal-actions">
+            <button id="btn-resume" class="primary-btn" type="button"><span class="primary-label">RESUME SHOW</span><span class="primary-arrow">↗</span></button>
+            <button id="btn-quit" class="ghost-btn" type="button">END SHOW</button>
+          </div>
+        </div>
+      </section>
+
+      <section id="how-screen" class="modal-screen is-hidden" aria-label="How to play">
+        <div class="modal-card how-card">
+          <button id="btn-how-close" class="close-btn" type="button" aria-label="Close instructions">×</button>
+          <span class="modal-kicker">THE RUNWAY 101</span>
+          <h2>MAKE IT<br><em>LOOK EASY.</em></h2>
+          <div class="how-grid">
+            <div class="how-item"><span class="how-num">01</span><b>SWITCH</b><p>Swipe left or right — or use the arrow buttons — to change lanes.</p></div>
+            <div class="how-item"><span class="how-num">02</span><b>JUMP</b><p>Swipe up or tap <i>JUMP</i> to clear neon crates and low barriers.</p></div>
+            <div class="how-item"><span class="how-num">03</span><b>POSE</b><p>When the POSE button lights up, tap it right on the beat. Perfect timing pays.</p></div>
+            <div class="how-item"><span class="how-num">04</span><b>SHINE</b><p>Collect stars and keep your streak to fill STYLE. Full style makes you a SUPERSTAR.</p></div>
+          </div>
+          <p class="how-note">Three hearts. Falling costs a heart. Keep the crowd fed.</p>
+          <button id="btn-how-play" class="primary-btn" type="button"><span class="primary-label">I'M READY</span><span class="primary-arrow">↗</span></button>
+        </div>
+      </section>
+
+      <section id="gameover-screen" class="modal-screen is-hidden" aria-label="Show complete">
+        <div class="modal-card results-card">
+          <span class="modal-kicker">THAT'S A WRAP</span>
+          <div class="result-rank" id="result-rank">IT GIRL</div>
+          <h2 id="result-title">YOU ATE.</h2>
+          <p id="result-copy">The crowd is still screaming.</p>
+          <div class="result-stats">
+            <div><span>SCORE</span><b id="final-score">000 000</b></div>
+            <div><span>RUNWAY</span><b id="final-distance">000 M</b></div>
+            <div><span>BEST STREAK</span><b id="final-combo">0</b></div>
+          </div>
+          <div class="best-callout" id="best-callout">NEW PERSONAL BEST <span>✦</span></div>
+          <div class="modal-actions">
+            <button id="btn-again" class="primary-btn" type="button"><span class="primary-label">RUN IT BACK</span><span class="primary-arrow">↗</span></button>
+            <button id="btn-menu" class="ghost-btn" type="button">CHANGE LOOK</button>
+          </div>
+        </div>
+      </section>
+
+      <div id="flash" class="screen-flash" aria-hidden="true"></div>
+      <div id="toast" class="toast" aria-live="polite"></div>
+      <div id="rotate-hint" class="rotate-hint is-hidden">TURN YOUR PHONE FOR THE FULL RUNWAY</div>
+    </div>
+
+    <script type="module" src="./src/main.js"></script>
+  </body>
+</html>
